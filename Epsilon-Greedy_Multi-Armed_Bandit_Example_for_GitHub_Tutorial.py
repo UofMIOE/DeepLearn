@@ -2,7 +2,7 @@
 """
 Created on Tue Jun 27 21:13:47 2017
 
-@author: jehagerty
+@author: jehagerty + dong + timothy + yuxi
 """
 
 __filename__ = "bandits.py"
