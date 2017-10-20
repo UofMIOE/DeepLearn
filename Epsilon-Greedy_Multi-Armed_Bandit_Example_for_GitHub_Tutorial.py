@@ -1,8 +1,6 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Jun 27 21:13:47 2017
+reated on Tue Jun 27 21:13:47 2017
 
-@author: jehagerty
+@aiuthor: jehagerty yuxi tim
 """
 
 __filename__ = "bandits.py"
@@ -39,4 +37,3 @@ class EpsilonGreedy(object):
         """Produce epsilon"""
         total = np.sum(arm_counts)
         return float(self.decay) / (total + float(self.decay))
-
