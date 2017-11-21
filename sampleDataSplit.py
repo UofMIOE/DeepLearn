@@ -20,7 +20,7 @@ def remove_elements(data, step):
         if i == step:
             new.append(ele)
             i -= 1
-        elif i == 1:
+        elif i == 0:
             i = step
             continue
         else:
