@@ -18,10 +18,11 @@ function [new] = dataTransform(data)
     
     new = [];
     for f = 1:length(factors_list)
-
-        new = removeElements(data, factors_list(f) - 1);
+        step = factors_list(f);
+        indexer = 1:step:len;
+        new = data(indexer);
         if sum(new) == count
-            fprintf('\nData Transformed with a step of %d.\n', factors_list(f) -1);
+            fprintf('\nData Transformed with a step of %d.\n', step);
             fprintf('Removed %d zeros from the data. \n', len - length(new));
             return
         elseif f == length(factors_list)
