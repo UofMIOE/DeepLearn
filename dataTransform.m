@@ -1,12 +1,12 @@
 function [new, index] = dataTransform(data)
-    
+
     len = length(data);
     count = sum(data);
-    
-    
-        
+
+
+
     num = len - 1;
-    
+
     i = 2;
     factors_list = [];
     while i < (num ^ .5) + 1
@@ -19,18 +19,11 @@ function [new, index] = dataTransform(data)
     factors_list;
     index = [];
     new = [];
-    
-   
-    
-    if data(len) == 0
-       index = 1:2:len;
-       new = data(index);
-       fprintf('\nData Transformed with a step of %d.\n', 2);
-       fprintf('Removed %d zeros from the data. \n', len - length(new));
-       return
-       
-    end
-    
+
+
+
+
+
     for f = 1:length(factors_list)
         step = factors_list(f);
         indexer = 1:step:len;
@@ -41,6 +34,14 @@ function [new, index] = dataTransform(data)
             fprintf('Removed %d zeros from the data. \n', len - length(new));
             return
         elseif f == length(factors_list)
+            if data(len) == 0
+               index = 1:2:len;
+               new = data(index);
+               fprintf('\nData Transformed with a step of %d.\n', 2);
+               fprintf('Removed %d zeros from the data. \n', len - length(new));
+               return
+               
+            end
             new = [];
             index = [];
             fprintf('No possible transformation found \n');
@@ -48,7 +49,15 @@ function [new, index] = dataTransform(data)
         else
             continue
         end
-       
+
     end
-    fprintf('No possible transformation found');
+    if data(len) == 0
+       index = 1:2:len;
+       new = data(index);
+       fprintf('\nData Transformed with a step of %d.\n', 2);
+       fprintf('Removed %d zeros from the data. \n', len - length(new));
+       return
+
+    end
+    fprintf('No possible transformation found \n');
 end
