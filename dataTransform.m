@@ -1,9 +1,9 @@
-function [new, index] = dataTransform(data)
+function [new, index, transform] = dataTransform(data)
 
     len = length(data);
     count = sum(data);
 
-
+    fprintf('\nNumber of ones in the time series %d.\n', count);
 
     num = len - 1;
 
@@ -20,6 +20,10 @@ function [new, index] = dataTransform(data)
     index = [];
     new = [];
 
+    if data(len) == 0
+        factors_list = 2:1:10;
+    end
+    
 
 
 
@@ -30,34 +34,23 @@ function [new, index] = dataTransform(data)
         index = indexer;
         new = data(indexer);
         if sum(new) == count
-            fprintf('\nData Transformed with a step of %d.\n', step);
+            fprintf('Data Transformed with a step of %d.\n', step);
             fprintf('Removed %d zeros from the data. \n', len - length(new));
+            transform = 1;
             return
         elseif f == length(factors_list)
-            if data(len) == 0
-               index = 1:2:len;
-               new = data(index);
-               fprintf('\nData Transformed with a step of %d.\n', 2);
-               fprintf('Removed %d zeros from the data. \n', len - length(new));
-               return
-               
-            end
+            
             new = [];
             index = [];
             fprintf('No possible transformation found \n');
+            transform = 0;
             return
         else
             continue
         end
 
     end
-    if data(len) == 0
-       index = 1:2:len;
-       new = data(index);
-       fprintf('\nData Transformed with a step of %d.\n', 2);
-       fprintf('Removed %d zeros from the data. \n', len - length(new));
-       return
-
-    end
+    
     fprintf('No possible transformation found \n');
+    transform = 0;
 end

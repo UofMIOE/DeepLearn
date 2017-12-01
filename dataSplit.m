@@ -1,7 +1,5 @@
-
-
 %read in data
-in_data = TrialDataUse;
+in_data = INMARKETTIMINGS1;
 
 %find size of the data
 n_rows = size(in_data,1);
@@ -19,6 +17,8 @@ single_record_index = zeros(0,1);
 %iterate through the data to split it up
 house_id = in_data(1,5);
 
+transformed = [];
+time_series = {};
 
 for (row_iter = 1:n_rows)
 
@@ -29,7 +29,7 @@ for (row_iter = 1:n_rows)
     %------------------------------------------------------------------
     %check to see if house_ids unique
 
-    if house_id == in_data(row_iter,6)
+    if house_id == in_data(row_iter,5) && row_iter ~= n_rows
 
 
 
@@ -47,11 +47,22 @@ for (row_iter = 1:n_rows)
 
             %INSERT PIPELINE HERE
             d = temp_storage(:,11);
-
-            [new, indexer] = dataTransform(temp_storage(:,11));
+            
+            [new, indexer, transform] = dataTransform(temp_storage(:,11));
+            transformed = temp_storage(indexer,:);
+            if size(transformed,1) > 1
+                time_series{end+1} = transformed;
+            end
+            
+            
+            
+            %INSERT PIPELINE HERE
         end
 
-
+        if row_iter == n_rows
+            break
+        end
+        
 
         temp_storage = zeros(0,n_columns);
         temp_storage = [temp_storage; in_data(row_iter,:)];
