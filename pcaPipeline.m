@@ -1,5 +1,6 @@
 function [input_matrix, purchase_output] = pcaPipeline(read_in)
 
+warning('off', 'all');
 %PCA Pipeline
 
 data_in = read_in;
