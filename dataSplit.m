@@ -1,5 +1,7 @@
+function [time_series] = dataSplit(in_data)
+
 %read in data
-in_data = INMARKETTIMINGS1;
+%in_data = INMARKETTIMINGS1;
 
 %find size of the data
 n_rows = size(in_data,1);
@@ -45,18 +47,17 @@ for (row_iter = 1:n_rows)
     else
         if size(temp_storage,1) > 3
 
-            %INSERT PIPELINE HERE
+            
             d = temp_storage(:,11);
             
-            [new, indexer, transform] = dataTransform(temp_storage(:,11));
+            [new, indexer, transform] = dataTransform(temp_storage(:,13));
             transformed = temp_storage(indexer,:);
             if size(transformed,1) > 1
                 time_series{end+1} = transformed;
             end
             
             
-            
-            %INSERT PIPELINE HERE
+           
         end
 
         if row_iter == n_rows
@@ -71,4 +72,5 @@ for (row_iter = 1:n_rows)
 
     house_id = in_data(row_iter,5);
 
+end
 end
