@@ -26,7 +26,7 @@ function [test_Y, test_T, perf] = TDNN(input_matrix, purchase_output)
 
     % Training on NN
     nn = train(nn,Xs,Ts,Xi,Ai);
-    view(nn)
+    
 
     % Performance Test
     [Y,Xf,Af] = nn(Xs,Xi,Ai);
