@@ -34,5 +34,3 @@ end
 input_matrix_converted = cell_storage';
 
 end
-
-

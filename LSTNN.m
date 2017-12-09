@@ -49,7 +49,7 @@ layers = [ ...
     lstmLayer(outputSize,'OutputMode',outputMode)
     fullyConnectedLayer(numClasses)
     softmaxLayer
-    classificationLayer]
+    classificationLayer];
 
 
 maxEpochs = 150;
@@ -77,9 +77,9 @@ testing_set_input_converted = converting(testing_set_input);
 
 miniBatchSize = 27;
 YPred = classify(net,testing_set_input_converted, ...
-    'MiniBatchSize',miniBatchSize)
+    'MiniBatchSize',miniBatchSize);
 
-acc = sum(YPred == testing_set_output_categorical)./numel(testing_set_output_categorical)
+acc = sum(YPred == testing_set_output_categorical)./numel(testing_set_output_categorical);
 
 test_prediction = YPred;
 test_results_actual = testing_set_output_categorical;
