@@ -48,7 +48,7 @@ for (row_iter = 1:n_rows)
         if size(temp_storage,1) > 3
 
             
-            d = temp_storage(:,11);
+            
             
             [new, indexer, transform] = dataTransform(temp_storage(:,13));
             transformed = temp_storage(indexer,:);
