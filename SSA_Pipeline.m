@@ -9,16 +9,16 @@ M = round(((size(data_in,1))/2)-1);
 N = size(data_in,1);
 
 %define time series
-time = data_in(:,10); %date
+time = data_in(:,2); %date
 
 %set specified time_series
-est_mil = data_in(:,12);
-ro_event = data_in(:,14);
-ro_total = data_in(:,15);
-p_total_2_or_more = data_in(:,204);
-p_total_asian = data_in(:,205);
-p_total_black = data_in(:,206);
-p_total_hawaii = data_in(:,207);
+est_mil = data_in(:,3);
+ro_event = data_in(:,5);
+ro_total = data_in(:,6);
+p_total_2_or_more = data_in(:,7);
+p_total_asian = data_in(:,8);
+p_total_black = data_in(:,9);
+p_total_hawaii = data_in(:,10);
 
 figure(1);
 clf;
@@ -73,8 +73,8 @@ for m=1:M;
     Y3(:,m) = ro_total((1:N-M+1)+m-1);
     Y4(:,m) = p_total_2_or_more((1:N-M+1)+m-1);
     Y5(:,m) = p_total_asian((1:N-M+1)+m-1);
-    Y6(:,m) = p_total_black((1:N-M+1)+m-1);    
-    Y7(:,m) = p_total_hawaii((1:N-M+1)+m-1);    
+    Y6(:,m) = p_total_black((1:N-M+1)+m-1);
+    Y7(:,m) = p_total_hawaii((1:N-M+1)+m-1);
 end
 
 Y = [Y1 Y2 Y3 Y4 Y5 Y6 Y7];
@@ -146,34 +146,33 @@ RC7=zeros(N,2*M);
 for m=1:2*M
   buf1=PC(:,m)*RHO(1:M,m)'; % invert projection - first channel
   buf1=buf1(end:-1:1,:);
-  
+
   buf2=PC(:,m)*RHO(M+1:end,m)'; % invert projection - second channel
   buf2=buf2(end:-1:1,:);
-  
+
   buf3=PC(:,m)*RHO(M+2:end,m)'; % invert projection - third channel
   buf3=buf2(end:-1:1,:);
-  
+
   buf4=PC(:,m)*RHO(M+3:end,m)'; % invert projection - third channel
-  buf4=buf2(end:-1:1,:);  
-  
+  buf4=buf2(end:-1:1,:);
+
   buf5=PC(:,m)*RHO(M+4:end,m)'; % invert projection - third channel
-  buf5=buf2(end:-1:1,:);  
-  
+  buf5=buf2(end:-1:1,:);
+
   buf6=PC(:,m)*RHO(M+5:end,m)'; % invert projection - third channel
-  buf6=buf2(end:-1:1,:);  
-  
+  buf6=buf2(end:-1:1,:);
+
   buf7=PC(:,m)*RHO(M+6:end,m)'; % invert projection - third channel
-  buf7=buf2(end:-1:1,:);  
-  
+  buf7=buf2(end:-1:1,:);
+
   for n=1:N % anti-diagonal averaging
-    RC1(n,m)=mean( diag(buf1,-(N-M+1)+n) );  
-    RC2(n,m)=mean( diag(buf2,-(N-M+1)+n) ); 
-    RC3(n,m)=mean( diag(buf3,-(N-M+1)+n) ); 
-    RC4(n,m)=mean( diag(buf4,-(N-M+1)+n) );  
-    RC5(n,m)=mean( diag(buf5,-(N-M+1)+n) ); 
-    RC6(n,m)=mean( diag(buf6,-(N-M+1)+n) ); 
-    RC7(n,m)=mean( diag(buf7,-(N-M+1)+n) ); 
-    
+    RC1(n,m)=mean( diag(buf1,-(N-M+1)+n) );
+    RC2(n,m)=mean( diag(buf2,-(N-M+1)+n) );
+    RC3(n,m)=mean( diag(buf3,-(N-M+1)+n) );
+    RC4(n,m)=mean( diag(buf4,-(N-M+1)+n) );
+    RC5(n,m)=mean( diag(buf5,-(N-M+1)+n) );
+    RC6(n,m)=mean( diag(buf6,-(N-M+1)+n) );
+    RC7(n,m)=mean( diag(buf7,-(N-M+1)+n) );
+
   end
 end;
-

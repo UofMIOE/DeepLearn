@@ -17,7 +17,7 @@ debug = zeros(0,n_columns);
 single_record_index = zeros(0,1);
 
 %iterate through the data to split it up
-house_id = in_data(1,5);
+house_id = in_data(1,1);
 
 transformed = [];
 time_series = {};
@@ -31,7 +31,7 @@ for (row_iter = 1:n_rows)
     %------------------------------------------------------------------
     %check to see if house_ids unique
 
-    if house_id == in_data(row_iter,5) && row_iter ~= n_rows
+    if house_id == in_data(row_iter,1) && row_iter ~= n_rows
 
 
 
@@ -47,30 +47,30 @@ for (row_iter = 1:n_rows)
     else
         if size(temp_storage,1) > 3
 
-            
-            
-            
-            [new, indexer, transform] = dataTransform(temp_storage(:,13));
+
+
+
+            [new, indexer, transform] = dataTransform(temp_storage(:,4));
             transformed = temp_storage(indexer,:);
             if size(transformed,1) > 1
                 time_series{end+1} = transformed;
             end
-            
-            
-           
+
+
+
         end
 
         if row_iter == n_rows
             break
         end
-        
+
 
         temp_storage = zeros(0,n_columns);
         temp_storage = [temp_storage; in_data(row_iter,:)];
         debug = [debug; in_data(row_iter,:)];
     end
 
-    house_id = in_data(row_iter,5);
+    house_id = in_data(row_iter,1);
 
 end
 end

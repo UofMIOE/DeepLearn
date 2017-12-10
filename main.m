@@ -7,7 +7,7 @@ time_series = dataSplit(data_in);
 pipelines = {@baselinePipeline, @pcaPipeline, @miPipeline};
 
 %#######################################################################
-%Time Delay Neural Network 
+%Time Delay Neural Network
 %TDNN is run using all 3 pipelines
 
 % 'results' is a cell of cells that contains the results of the testing of
@@ -40,7 +40,7 @@ end
 
 
 %#######################################################################
-%Simple Recurrent Neural Network 
+%Simple Recurrent Neural Network
 %sRNN is run using all 3 pipelines
 %#######################################################################
 
@@ -68,7 +68,7 @@ end
 
 
 %#######################################################################
-%Long Short Term Neural Network 
+%Long Short Term Neural Network
 %LSTNN is run using all 3 pipelines
 %#######################################################################
 
@@ -94,4 +94,3 @@ for p=1:length(pipelines)
 end
 
 %######################################################################
-
